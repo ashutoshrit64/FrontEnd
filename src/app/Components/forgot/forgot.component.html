@@ -1,0 +1,17 @@
+<div class="body">
+    <div class="container">
+            <div class="login_box">
+<h1>Forgot Password</h1>
+<div class="ui-g ui-fluid">
+    <div class="ui-g-12 ui-md-4">
+        <div class="ui-inputgroup">
+            <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+            <input type="text" autocomplete="off" class="ui-inputtext ui-corner-all ui-widget"
+            placeholder="Enter Email-Id" [(formControl)]='email' [(ngModel)]="forgot.email"  
+            required class="input_box" pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$"> 
+        </div>
+    </div>
+</div>
+<div class="login_input"> 
+    <button pButton type="submit" label="confirm E-Mail" (click)="forgotlink()" class="submit_box" ></button>
+</div></div></div>

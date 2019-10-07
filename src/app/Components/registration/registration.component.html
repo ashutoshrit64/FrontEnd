@@ -1,0 +1,89 @@
+<div class="body">
+    <div class="container">
+        <div class="login_box">
+            <h1>Fundoo Registration</h1>
+
+            <div style="margin: 0 auto;width: 50%">
+                <div class="login_input">
+                    <div class="ui-g ui-fluid">
+                        <div class="ui-g-12 ui-md-12">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                                <input type="text" autocomplete="off" class="ui-inputtext ui-corner-all ui-widget"
+                                    placeholder="Enter first Name" [(formControl)]='fname' [(ngModel)]="user.fname"
+                                    pattern="[a-zA-Z ]*" required>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="login_input">
+                    <div class="ui-g ui-fluid">
+                        <div class="ui-g-12 ui-md-12">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                                <input type="text" autocomplete="off" class="ui-inputtext ui-corner-all ui-widget"
+                                    placeholder="Enter last name" [(formControl)]='lname' [(ngModel)]="user.lname"
+                                    pattern="[a-zA-Z ]*" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="login_input">
+                    <div class="ui-g ui-fluid">
+                        <div class="ui-g-12 ui-md-12">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                                <input type="text" autocomplete="off" class="ui-inputtext ui-corner-all ui-widget"
+                                    placeholder="Enter your emailid" [(formControl)]='emailid'
+                                    [(ngModel)]="user.emailid" pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$"
+                                    required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="login_input">
+                    <div class="ui-g ui-fluid">
+                        <div class="ui-g-12 ui-md-12">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                                <input type="password" autocomplete="off" class="ui-inputtext ui-corner-all ui-widget"
+                                    placeholder="Enter your password" [(formControl)]='password'
+                                    [(ngModel)]="user.password" required> </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="login_input">
+                    <div class="ui-g ui-fluid">
+                        <div class="ui-g-12 ui-md-12">
+                            <p-calendar placeholder="Enter your DOB" class="input_box " [(formControl)]='dob'
+                                autocomplete="off" [(ngModel)]="user.dob"></p-calendar>
+                        </div>
+                    </div>
+                </div>
+                <div class="login_input">
+                    <div class="ui-g ui-fluid">
+                        <div class="ui-g-12 ui-md-12">
+                            <div class="ui-inputgroup">
+                                <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                                <input type="text" autocomplete="off" class="ui-inputtext ui-corner-all ui-widget"
+                                    placeholder="Enter your phoneno" [(formControl)]='phoneno'
+                                    [(ngModel)]="user.phoneno" required> </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="login_input">
+                <button pButton type="submit" label="Register " (click)="submit()" class="submit_box"></button>
+                &nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;
+                <button pButton type="button" label="Login " (click)="login()" class="submit_box"></button>
+            </div>
+
+   
+        </div>
+
+    </div>
+</div>

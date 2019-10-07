@@ -1,0 +1,44 @@
+  <div class="body">
+    <div class="container">
+            <div class="login_box">
+<h1>FundooLogin</h1>
+<div style="margin: 0 auto;width: 30%">
+<div class="login_input">
+<div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-12">
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                <input type="text" autocomplete="off" class="ui-inputtext ui-corner-all ui-widget"
+                placeholder="Enter Email-Id" [(formControl)]='emailid' [(ngModel)]="loginuser.emailid"  
+                  class="input_box" pattern="^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$" required> 
+            </div> 
+        </div>
+</div>
+</div>  
+<div class="login_input">
+<div class="ui-g ui-fluid">
+        <div class="ui-g-12 ui-md-12">
+            <div class="ui-inputgroup">
+                <span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
+                <input type="password" autocomplete="off" class="ui-inputtext ui-corner-all ui-widget"
+                placeholder="Enter password" [(formControl)]='Password' [(ngModel)]="loginuser.Password"  
+                required class="input_box"> 
+            </div>
+        </div>
+</div>
+</div>
+            
+<div class="login_input"> 
+<button pButton type="submit" label="Login " (click)="login()" class="submit_box" ></button>
+</div> 
+   <br>
+    
+&nbsp;&nbsp;&nbsp;&nbsp;<a (click)="register()"> New User</a>
+&nbsp;&nbsp;||&nbsp;&nbsp;<a (click)="forgot()"> Forgot Password</a>
+</div> 
+</div>
+ 
+  </div>  
+</div>
+      
+
