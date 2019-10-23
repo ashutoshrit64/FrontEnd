@@ -3,6 +3,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { HttpService } from '../../../../src/app/service/httpService/http.service'
 import { HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
+
 
 const httpOptions: any = {
   headers: new HttpHeaders({
@@ -28,7 +30,7 @@ export class LoginComponent implements OnInit {
 
 
 
-  constructor(private httpservice: HttpService, private route: Router) { }
+  constructor(private httpservice: HttpService, private route: Router,private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
@@ -40,9 +42,25 @@ export class LoginComponent implements OnInit {
       password: this.Password.value
     }
     this.httpservice.postRequest('login', this.loginuser).subscribe(response => {
-
+      localStorage.setItem('token',response.token);
+      console.log("status code-->"+response.statusCode);
+      if(response.statusCode==200)
+      {
+        // this.snackBar.open(response.statusMessage);
+        this.snackBar.open(response.statusMessage, 'Undo', {
+          duration: 3000
+        });
       this.route.navigate(['dashboard']);
       console.log(response);
+      }
+      else{
+        console.log(response.statusMessage);
+        this.snackBar.open(response.statusMessage, 'User present last time'+response.token, {
+          duration: 3000
+        });
+
+        this.route.navigate(['login']);
+      }
 
 
     })

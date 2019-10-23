@@ -1,0 +1,64 @@
+     
+<div fxLayout='row wrap' class="main" fxLayoutAlign='center center' fxFlex='100'  >
+    <mat-card [style]="{width: '300px' }"  fxFlexOffset='30px' *ngFor='let item of trashNotes' styleClass="ui-card-shadow" 
+      class="small_card" [style.background-color]="item.color" >
+      
+      <div fxLayout='column'  (click)="editnote(item)">
+      <p-header>
+        <div class="input-field col m6" fxFlex='100' fxLayout='row'>
+          {{item.title}}
+        </div>
+  
+      </p-header>
+      <div class="input-field col m6" fxFlex='100' fxLayout='row'>
+        {{item.description}}
+  
+      </div>
+    </div>
+       <p-footer>
+      <!--  <div>
+            <div fxLayout='row' fxLayoutGap='30px' fxLayoutAlign='start' >
+                <div>
+                    <i class="far fa-bell"></i> 
+                </div>
+                <div>
+                    <i class="fa fa-user-plus"></i>
+                </div> -->
+                <!-- <div>
+                  <div class="nav-item">
+                    <div class="dropdown">
+                      <div role="button" data-toggle="dropdown">
+                        <i class="fa fa-palette"></i>
+                      </div>
+      
+                      <div class="dropdown-menu">
+      
+                        <div class="block" *ngFor="let color of color_set" (click)="changecolor(color.color,item.id)"
+                          style="height: 30px;width: 30px;float: left;margin: 3px;" [style.background]="color.color"></div>
+      
+      
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+               
+               
+                <div>
+                        <div class="nav-item" fxLayoutAlign="end end">
+                                <div class="dropdown">
+                                  <button type="button" class="btn" data-toggle="dropdown">
+                                        <i class="fas fa-ellipsis-v" size="3x"></i>
+                                  </button>
+                                  <div class="dropdown-menu">
+                                      <div class="dropdown-item" (click)="restore(item)">Restore Note</div>
+                                      <div class="dropdown-item" (click)="delete(item)">Delete Forever</div>
+                                     
+            
+                                    </div>
+                </div>
+            </div></div>
+      </p-footer>
+  
+    </mat-card>
+     
+  </div> 

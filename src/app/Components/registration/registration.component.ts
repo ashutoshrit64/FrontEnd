@@ -19,7 +19,7 @@ const httpOptions: any = {
 })
 
 export class RegistrationComponent implements OnInit {
-  cars: any[]
+ 
   fname = new FormControl('', [Validators.minLength(3), Validators.maxLength(20)]);
   lname = new FormControl('', [Validators.minLength(3), Validators.maxLength(20)]);
   emailid = new FormControl('');
@@ -38,14 +38,19 @@ export class RegistrationComponent implements OnInit {
   }
   submit() {
     this.httpService.postRequest('register',this.user).subscribe(response=>{
-
+      localStorage.setItem('token',response.token);
 console.log(response);
 
 
 console.log("Data",this.user);
 
       console.log("Registered Successfully");
-      
+      if(response.statusCode==200){
+        this.route.navigate(['login']);
+      }
+      else{
+        this.route.navigate(['registration']);
+      }
     })
 
 

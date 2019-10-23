@@ -13,15 +13,35 @@ import { DropdownModule } from 'primeng/primeng';
 import {MatCardModule} from '@angular/material/card';
 import {ToolbarModule} from 'primeng/toolbar';
 import {SidebarModule} from 'primeng/sidebar';
+import {DialogModule} from 'primeng/dialog';
 import { Component, OnInit } from '@angular/core';
+import {CardModule} from 'primeng/card';
+import { FlexLayoutModule } from "@angular/flex-layout";
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { HttpClientModule } from '@angular/common/http';
 import { ForgotComponent } from './Components/forgot/forgot.component';
 import { ResetpasswordComponent } from './Components/resetpassword/resetpassword.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import {MatInputModule} from '@angular/material/input';
+import { MatButtonModule, MatSidenavModule } from "@angular/material";
 import { MatIconModule } from "@angular/material/icon";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { VerifyComponent } from './Components/verify/verify.component';
+import { DemoMaterialModule } from './material-module';
+import { NotesComponent } from './Components/notes/notes.component';
+import { AllnotesComponent } from './Components/allnotes/allnotes.component';
+import { IconsComponent } from './Components/icons/icons.component';
+import { DialogComponent } from './Components/dialog/dialog.component';
+import { NotePipe } from "./pipe/note.pipe";
+import { ArchiveComponent } from './Components/archive/archive.component';
+import { TrashComponent } from './Components/trash/trash.component';
+import { ArchivepipePipe } from './pipe/pipe/archieve/archivepipe.pipe';
+import {ColorPickerModule} from 'primeng/colorpicker';
+import { PinPipe } from './pipe/pipe/pinned/pin.pipe';
+import { LabeldialogComponent } from './Components/labeldialog/labeldialog.component';
+
+ 
+ 
 
 
 @NgModule({
@@ -31,16 +51,31 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     RegistrationComponent,
     ForgotComponent,
     ResetpasswordComponent,
-    DashboardComponent
+    DashboardComponent,
+    VerifyComponent,
+    NotesComponent,
+    AllnotesComponent,
+    IconsComponent,
+    DialogComponent,
+    NotePipe,
+    ArchiveComponent,
+    TrashComponent,
+    ArchivepipePipe,
+    PinPipe,
+    LabeldialogComponent
+   
     
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
+    HttpClientModule,  
+    DialogModule,
     AppRoutingModule,
     ButtonModule,
     AccordionModule,
+    FlexLayoutModule,
     CalendarModule,
+    MatSidenavModule,
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
@@ -48,13 +83,20 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     SelectButtonModule,
     MatCardModule,
     ToolbarModule,
+    MatButtonModule,
     SidebarModule,
     MatInputModule,
     MatIconModule,
-    NgbModule
+    NgbModule,
+    DemoMaterialModule,
+    CardModule,
+    ColorPickerModule
     // HttpClient
   ],
-  providers: [],
+  entryComponents:[
+    DialogComponent
+  ],
+  providers: [AppModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

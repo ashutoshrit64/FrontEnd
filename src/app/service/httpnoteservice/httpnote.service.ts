@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-
+import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root'
 })
-export class HttpService {
-  baseurl = environment.baseUrl;
-  basurlNotes=environment.baseUrlNotes;
+export class HttpnoteService {
+  baseurl=environment.baseUrlNotes;
   constructor(private http: HttpClient) { }
 
   public postRequest(url: any, data: any): any {
@@ -26,14 +24,10 @@ export class HttpService {
     return this.http.delete(this.baseurl + url);
   }
   public getRequest(url: any): any {
-    console.log('data--->', url);
+    console.log('url--->', this.baseurl + url);
     return this.http.get(this.baseurl + url);
   }
   public forgetRequest(url: any, data: any): any {
     return this.http.get(this.baseurl + url);
   }
-
-
-
-
 }

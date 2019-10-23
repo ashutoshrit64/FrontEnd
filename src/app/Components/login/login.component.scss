@@ -8,15 +8,15 @@
     margin: 0px auto;
     padding: 20px 20px;
     width: 900px;
-    box-shadow: 0px 10px 10px rgb(231, 233, 153);
+    box-shadow: 0px 0px 10px black;
     border-radius: 10px;
-    background-color: rgb(231, 233, 153);
+    background-color: white(231, 233, 153);
   }
   
   .body {
     // background: url(" ");
     background-size: 100%;
-    background-color: antiquewhite;
+    background-color: white;
     height: 650px;
     overflow: hidden;
     margin: -10px -10px;
@@ -38,7 +38,13 @@
   width: 10%
   }
   }
-
+  ::ng-deep snack-bar-container.custom-class {
+    background: yellow;
+  }
+  
+  ::ng-deep .custom-class .mat-simple-snackbar {
+    color: green;
+  }
 
 
 

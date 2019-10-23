@@ -1,0 +1,293 @@
+<div fxLayout='column' style="height: 100vh;">
+  <div fxLayoutAlign='center space-around' class="main" fxFlex='100'>
+    <div *ngIf='toggle==false' (click)="cardOpen()">
+      <p-card [style]="{width: '360px'}" class="small_card">
+        <div class="input-field col m6" fxFlex='100'>
+          <input id="text" type="text" fxFlex='100' placeholder="Take a Note..." class="validate">
+
+        </div>
+      </p-card>
+    </div>
+    <div *ngIf='toggle==true'>
+      <p-card [style]="{width: '360px'}" styleClass="ui-card-shadow" class="small_card"
+        [style.background-color]="color">
+        <p-header>
+          <div class="input-field col m6" fxFlex='100' fxLayout='row'>
+            <input id="text" type="text" [(formControl)]='Title' fxFlex='100' placeholder="Title" class="validate">
+
+          </div>
+
+        </p-header>
+        <div class="input-field col m6" fxFlex='100' fxLayout='row'>
+          <input id="text" type="text" [(formControl)]='Description' fxFlex='100' placeholder="Take a Note...."
+            class="validate">
+
+        </div>
+        <p-footer>
+          <div>
+            <div fxLayout='row' fxLayoutGap='30px' fxLayoutAlign='start'>
+              <div>
+                <i class="far fa-bell"></i>
+              </div>
+              <div>
+                <i class="fa fa-user-plus"></i>
+              </div>
+              <div>
+                <div class="nav-item">
+                  <div class="dropdown">
+                    <div role="button" data-toggle="dropdown">
+                      <i class="fa fa-palette"></i>
+                    </div>
+
+                    <div class="dropdown-menu">
+
+                      <div class="block" *ngFor="let color of color_set"
+                        style="height: 30px;width: 30px;float: left;margin: 3px;" [style.background]="color.color">
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <i class="fas fa-image"></i>
+              </div>
+              <div (click)="archieve(item)">
+                <i class="fa fa-archive" aria-label="Archieve"></i>
+              </div>
+              <div>
+                <div class="nav-item">
+                  <div class="dropdown">
+                    <button type="button" class="btn" data-toggle="dropdown">
+                      <i class="fas fa-ellipsis-v" size="3x"></i>
+                    </button>
+                    <div class="dropdown-menu">
+                      <div class="dropdown-item">Add Label</div>
+                      <div class="dropdown-item">Show Checkboxes</div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div fxLayoutAlign="end end">
+                <button mat-button class="button_property" (click)="createNotes()">Close</button>
+              </div>
+
+            </div>
+          </div>
+        </p-footer>
+      </p-card>
+    </div>
+  </div>
+
+
+
+
+
+<div class="pin">
+  <p>Pinned</p>
+</div>
+  <div fxLayout='row wrap' class="main" fxLayoutAlign='space-around'>
+    
+    <mat-card [style]="{width: '300px' }" fxFlexOffset='30px' *ngFor='let item of allnotes|pin'
+      styleClass="ui-card-shadow" [style.background-color]="item.color" class="small_card">
+      <div fxLayoutAlign='end end'>
+        <div (click)="pin(item.id)">
+          
+          <i class="fa fa-thumbtack" aria-label="pinned"></i>
+        </div>
+      </div>
+      <div fxLayout='column' (click)="editnote(item)">
+        <p-header>
+          <div class="input-field col m6" fxFlex='100' fxLayout='row'>
+            {{item.title}}
+
+          </div>
+
+
+        </p-header>
+        <div class="input-field col m6" fxFlex='100' fxLayout='row'>
+          {{item.description}}
+
+        </div>
+      </div>
+      <p-footer>
+        <div>
+          <div fxLayout='column'>
+            <div clas="tag">
+              {{item.label}}
+            </div>
+
+
+
+            <div fxLayout='row' fxLayoutGap='30px' fxLayoutAlign='start'>
+              <div>
+                <i class="far fa-bell"></i>
+              </div>
+              <div>
+                <i class="fa fa-user-plus"></i>
+              </div>
+              <div>
+                <div class="nav-item">
+                  <div class="dropdown">
+                    <div role="button" data-toggle="dropdown">
+                      <i class="fa fa-palette"></i>
+                    </div>
+
+                    <div class="dropdown-menu">
+
+                      <div class="block" *ngFor="let color of color_set" (click)="changecolor(color.color,item.id)"
+                        style="height: 30px;width: 30px;float: left;margin: 3px;" [style.background]="color.color">
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <i class="fas fa-image"></i>
+              </div>
+              <div (click)="archieve(item)">
+                <i class="fa fa-archive" aria-label="Archieve"></i>
+              </div>
+              <div>
+                <div [matMenuTriggerFor]="menu"> <i class="fas fa-ellipsis-v" size="3x"></i></div>
+
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="delete(item)">Delete Note</button>
+                  <button mat-menu-item [matMenuTriggerFor]="addlabel">Add Label</button>
+                </mat-menu>
+
+
+                <mat-menu #addlabel="matMenu">
+                    <div class="drop" (click)="$event.stopPropagation()" >
+                        <div class="input-field col m6" >
+                            <input id="text" type="text" [(ngModel)]="labeln"  placeholder="Add label...."
+                              class="validate">
+                             <i class="fas fa-check" (click)="addlabe(labeln)" ></i>  
+                  
+                          </div>
+                      </div>
+                  <div class="drop" *ngFor="let label of alllabel"
+                    (click)="addnotetolabel(item.id,label.id,label.labelName)">
+                    {{label.labelName}}</div>
+                </mat-menu>
+
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </p-footer>
+
+    </mat-card>
+
+  </div>
+
+
+<div class="pin">
+    <p>Others</p>
+  </div>
+  <!-- <div><h1>UnPinned Notes</h1></div> -->
+
+  <div fxLayout='row wrap' class="main" fxLayoutAlign='space-around'>
+
+    <mat-card [style]="{width: '300px' }" fxFlexOffset='30px' *ngFor='let item of allnotes|note'
+      styleClass="ui-card-shadow" [style.background-color]="item.color" class="small_card">
+      <div fxLayoutAlign='end end'>
+        <div (click)="pin(item.id)">
+          <i class="fa fa-thumbtack" aria-label="pinned"></i>
+        </div>
+      </div>
+      <div fxLayout='column' (click)="editnote(item)">
+        <p-header>
+          <div class="input-field col m6" fxFlex='100' fxLayout='row'>
+            {{item.title}}
+
+          </div>
+
+
+        </p-header>
+        <div class="input-field col m6" fxFlex='100' fxLayout='row'>
+          {{item.description}}
+
+        </div>
+      </div>
+      <p-footer>
+        <div>
+          <div fxLayout='column'>
+            <div clas="tag">
+              {{item.label}}
+            </div>
+
+
+
+            <div fxLayout='row' fxLayoutGap='30px' fxLayoutAlign='start'>
+              <div>
+                <i class="far fa-bell"></i>
+              </div>
+              <div>
+                <i class="fa fa-user-plus"></i>
+              </div>
+              <div>
+                <div class="nav-item">
+                  <div class="dropdown">
+                    <div role="button" data-toggle="dropdown">
+                      <i class="fa fa-palette"></i>
+                    </div>
+
+                    <div class="dropdown-menu">
+
+                      <div class="block" *ngFor="let color of color_set" (click)="changecolor(color.color,item.id)"
+                        style="height: 30px;width: 30px;float: left;margin: 3px;" [style.background]="color.color">
+                      </div>
+
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <i class="fas fa-image"></i>
+              </div>
+              <div (click)="archieve(item)">
+                <i class="fa fa-archive" aria-label="Archieve"></i>
+              </div>
+              <div>
+                <div [matMenuTriggerFor]="menu"> <i class="fas fa-ellipsis-v" size="3x"></i></div>
+
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="delete(item)">Delete Note</button>
+                  <button mat-menu-item [matMenuTriggerFor]="addlabel">Add Label</button>
+                </mat-menu>
+
+
+                <mat-menu #addlabel="matMenu">
+                    <div class="drop" (click)="$event.stopPropagation()" >
+                        <div class="input-field col m6" >
+                            <input id="text" type="text" [(ngModel)]="labeln"  placeholder="Add label...."
+                              class="validate">
+                             <i class="fas fa-check" (click)="addlabe(labeln)" ></i>  
+                  
+                          </div>
+                      </div>
+                  <div class="drop" *ngFor="let label of alllabel"
+                    (click)="addnotetolabel(item.id,label.id,label.labelName)">
+                    {{label.labelName}}</div>
+                </mat-menu>
+
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </p-footer>
+
+    </mat-card>
+
+  </div>

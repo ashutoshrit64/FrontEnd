@@ -1,0 +1,35 @@
+<mat-card [style.background-color]="data.color">
+
+    <div fxLayoutAlign='end end'>
+        <div (click)="pinned(data.id)">
+            <i class="fa fa-thumbtack" aria-label="pinned"></i>
+        </div>
+    </div>
+    <div [style]="{width: '360px'}" styleClass="ui-card-shadow" class="small_card">
+        <p-header>
+            <div class="input-field col m6" fxFlex='100' fxLayout='row'>
+                <input id="text" type="text" [(formControl)]='Title' [style.background-color]="data.color"
+                    [(ngModel)]="data.title" fxFlex='100' class="validate">
+
+            </div>
+
+        </p-header>
+        <div class="input-field col m6" fxFlex='100'>
+            <input id="text" type="text" [(formControl)]='Description' [style.background-color]="data.color"
+                [(ngModel)]="data.description" fxFlex='100' class="validate">
+        </div>
+        <p-footer>
+
+            <div fxLayout='row'>
+                <div>
+                    <app-icons></app-icons>
+                </div>
+              
+                <div fxLayoutAlign="end end">
+                    <button mat-button class="button_property" [mat-dialog-close] (click)="update()">Close</button>
+                </div>
+          
+            </div>
+        </p-footer>
+    </div>
+</mat-card>

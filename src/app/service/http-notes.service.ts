@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
-export class HttpService {
-  baseurl = environment.baseUrl;
-  basurlNotes=environment.baseUrlNotes;
+export class HttpNotesService {
+  baseurl = environment.baseUrlNotes;
   constructor(private http: HttpClient) { }
+
 
   public postRequest(url: any, data: any): any {
     console.log('data--->', data);
@@ -32,7 +32,6 @@ export class HttpService {
   public forgetRequest(url: any, data: any): any {
     return this.http.get(this.baseurl + url);
   }
-
 
 
 
