@@ -21,7 +21,8 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <div class="nav-item">
       <form class="form-inline" action="/action_page.php">
-        <input class="form-control mr-sm-2" type="text" [(formControl)]='query' (click)="showsearch()"  (keyup)="onKey($event)" placeholder="Search" style="width: 750px;">
+        <input class="form-control mr-sm-2" type="text" [(formControl)]='query' (click)="showsearch()"
+          (keyup)="onKey($event)" placeholder="Search" style="width: 750px;">
       </form>
     </div>
     <div class="nav-item">
@@ -32,63 +33,76 @@
     <div class="nav-item">
       <div class="dropdown" style="float: right;right:0px;">
         <button type="button" class="btn" data-toggle="dropdown">
-          <img
-            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjMDAwIj4KICA8cGF0aCBkPSJNMTMuODUgMjIuMjVoLTMuN2MtLjc0IDAtMS4zNi0uNTQtMS40NS0xLjI3bC0uMjctMS44OWMtLjI3LS4xNC0uNTMtLjI5LS43OS0uNDZsLTEuOC43MmMtLjcuMjYtMS40Ny0uMDMtMS44MS0uNjVMMi4yIDE1LjUzYy0uMzUtLjY2LS4yLTEuNDQuMzYtMS44OGwxLjUzLTEuMTljLS4wMS0uMTUtLjAyLS4zLS4wMi0uNDYgMC0uMTUuMDEtLjMxLjAyLS40NmwtMS41Mi0xLjE5Yy0uNTktLjQ1LS43NC0xLjI2LS4zNy0xLjg4bDEuODUtMy4xOWMuMzQtLjYyIDEuMTEtLjkgMS43OS0uNjNsMS44MS43M2MuMjYtLjE3LjUyLS4zMi43OC0uNDZsLjI3LTEuOTFjLjA5LS43LjcxLTEuMjUgMS40NC0xLjI1aDMuN2MuNzQgMCAxLjM2LjU0IDEuNDUgMS4yN2wuMjcgMS44OWMuMjcuMTQuNTMuMjkuNzkuNDZsMS44LS43MmMuNzEtLjI2IDEuNDguMDMgMS44Mi42NWwxLjg0IDMuMThjLjM2LjY2LjIgMS40NC0uMzYgMS44OGwtMS41MiAxLjE5Yy4wMS4xNS4wMi4zLjAyLjQ2cy0uMDEuMzEtLjAyLjQ2bDEuNTIgMS4xOWMuNTYuNDUuNzIgMS4yMy4zNyAxLjg2bC0xLjg2IDMuMjJjLS4zNC42Mi0xLjExLjktMS44LjYzbC0xLjgtLjcyYy0uMjYuMTctLjUyLjMyLS43OC40NmwtLjI3IDEuOTFjLS4xLjY4LS43MiAxLjIyLTEuNDYgMS4yMnptLTMuMjMtMmgyLjc2bC4zNy0yLjU1LjUzLS4yMmMuNDQtLjE4Ljg4LS40NCAxLjM0LS43OGwuNDUtLjM0IDIuMzguOTYgMS4zOC0yLjQtMi4wMy0xLjU4LjA3LS41NmMuMDMtLjI2LjA2LS41MS4wNi0uNzhzLS4wMy0uNTMtLjA2LS43OGwtLjA3LS41NiAyLjAzLTEuNTgtMS4zOS0yLjQtMi4zOS45Ni0uNDUtLjM1Yy0uNDItLjMyLS44Ny0uNTgtMS4zMy0uNzdsLS41Mi0uMjItLjM3LTIuNTVoLTIuNzZsLS4zNyAyLjU1LS41My4yMWMtLjQ0LjE5LS44OC40NC0xLjM0Ljc5bC0uNDUuMzMtMi4zOC0uOTUtMS4zOSAyLjM5IDIuMDMgMS41OC0uMDcuNTZhNyA3IDAgMCAwLS4wNi43OWMwIC4yNi4wMi41My4wNi43OGwuMDcuNTYtMi4wMyAxLjU4IDEuMzggMi40IDIuMzktLjk2LjQ1LjM1Yy40My4zMy44Ni41OCAxLjMzLjc3bC41My4yMi4zOCAyLjU1eiIvPgogIDxjaXJjbGUgY3g9IjEyIiBjeT0iMTIiIHI9IjMuNSIvPgo8L3N2Zz4K">
-        </button>
-        <div class="dropdown-menu">
- 
-          <div fxLayout='row'   fxLayoutAlign='Space-around' fxLayoutGap='30px' >
-              <div class="dropdown-item" class="circle">m</div>
-          
-              <div class="dropdown-item" (click)="logout()">Log Out</div>
-          
+          <div class="smallcircle">
+          <img src="http://localhost:8080/user/getphoto?token={{token}}" class="smallimage">
           </div>
+          </button>
        
+        <div class="dropdown-menu sign_outbox">
+
+          <div fxLayout='row' fxLayoutAlign='Space-around' fxLayoutGap='5px'>
+
+            <div class="circle" data-toggle="modal" data-target="#profile">
+              <img src="http://localhost:8080/user/getphoto?token={{token}}" class="profile">
+              <div class="change">Change</div>
+            </div>
+            <div >
+              <p>{{fname}}</p>
+             <p> 
+                {{emailid}}
+             </p>
+            </div>
+
+          </div>
+          <div fxLayout='row' fxLayoutAlign='center'>
+          <div class="dropdown-item data" (click)="logout()">Log Out</div>
+</div>
         </div>
       </div>
     </div>
   </div>
 </nav>
 <div *ngIf="!Show_search">
-<div class="pin">Results</div>
-<div fxLayout='column' class="box" fxLayoutAlign='center' fxLayoutGap='30px'>
-<div *ngFor="let items of Search" >
- 
-    <mat-card [style]="{width: '300px' }" fxFlexOffset='30px' styleClass="ui-card-shadow" [style.background-color]="items.color" class="small_card">
-    <p-header>
-      <div class="input-field col m6" fxFlex='100' fxLayout='row'>
-        {{items.title}}
-      </div>
+  <div class="pin">Results</div>
+  <div fxLayout='column' class="box" fxLayoutAlign='center' fxLayoutGap='30px'>
+    <div *ngFor="let items of Search">
 
-    </p-header>
-    <div class="input-field col m6" fxFlex='100' fxLayout='row'>
-      {{items.description}}
+      <mat-card [style]="{width: '300px' }" fxFlexOffset='30px' styleClass="ui-card-shadow"
+        [style.background-color]="items.color" class="small_card">
+        <p-header>
+          <div class="input-field col m6" fxFlex='100' fxLayout='row'>
+            {{items.title}}
+          </div>
 
-    </div>
-    <p-footer>
-        <div>
-          <div fxLayout='column'>
-            <div clas="tag">
-              {{items.label}}
-            </div>
+        </p-header>
+        <div class="input-field col m6" fxFlex='100' fxLayout='row'>
+          {{items.description}}
 
-
-
-            <div fxLayout='row' fxLayoutGap='30px' fxLayoutAlign='start'>
-              <div>
-                <i class="far fa-bell"></i>
+        </div>
+        <p-footer>
+          <div>
+            <div fxLayout='column'>
+              <div clas="tag">
+                {{items.label}}
               </div>
-              <div>
-                <i class="fa fa-user-plus"></i>
-              </div>
-              <div>
-                <div class="nav-item">
-                  <div class="dropdown">
-                    <div role="button" data-toggle="dropdown">
-                      <i class="fa fa-palette"></i>
-                    </div>
 
-                    <!-- <div class="dropdown-menu">
+
+
+              <div fxLayout='row' fxLayoutGap='30px' fxLayoutAlign='start'>
+                <div>
+                  <i class="far fa-bell"></i>
+                </div>
+                <div>
+                  <i class="fa fa-user-plus"></i>
+                </div>
+                <div>
+                  <div class="nav-item">
+                    <div class="dropdown">
+                      <div role="button" data-toggle="dropdown">
+                        <i class="fa fa-palette"></i>
+                      </div>
+
+                      <!-- <div class="dropdown-menu">
 
                       <div class="block" *ngFor="let color of color_set" (click)="changecolor(color.color,item.id)"
                         style="height: 30px;width: 30px;float: left;margin: 3px;" [style.background]="color.color">
@@ -96,48 +110,47 @@
 
 
                     </div> -->
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div>
-                <i class="fas fa-image"></i>
-              </div>
-              <div (click)="archieve(item)">
-                <i class="fa fa-archive" aria-label="Archieve"></i>
-              </div>
-              <div>
-                <div [matMenuTriggerFor]="menu"> <i class="fas fa-ellipsis-v" size="3x"></i></div>
+                <div>
+                  <i class="fas fa-image"></i>
+                </div>
+                <div (click)="archieve(item)">
+                  <i class="fa fa-archive" aria-label="Archieve"></i>
+                </div>
+                <div>
+                  <div [matMenuTriggerFor]="menu"> <i class="fas fa-ellipsis-v" size="3x"></i></div>
 
-                <mat-menu #menu="matMenu">
-                  <button mat-menu-item (click)="delete(item)">Delete Note</button>
-                  <button mat-menu-item [matMenuTriggerFor]="addlabel">Add Label</button>
-                </mat-menu>
+                  <mat-menu #menu="matMenu">
+                    <button mat-menu-item (click)="delete(item)">Delete Note</button>
+                    <button mat-menu-item [matMenuTriggerFor]="addlabel">Add Label</button>
+                  </mat-menu>
 
 
-                <mat-menu #addlabel="matMenu">
-                    <div class="drop" (click)="$event.stopPropagation()" >
-                        <div class="input-field col m6" >
-                            <input id="text" type="text" [(ngModel)]="labeln"  placeholder="Add label...."
-                              class="validate">
-                             <i class="fas fa-check" (click)="addlabe(labeln)" ></i>  
-                  
-                          </div>
+                  <mat-menu #addlabel="matMenu">
+                    <div class="drop" (click)="$event.stopPropagation()">
+                      <div class="input-field col m6">
+                        <input id="text" type="text" [(ngModel)]="labeln" placeholder="Add label...." class="validate">
+                        <i class="fas fa-check" (click)="addlabe(labeln)"></i>
+
                       </div>
-                  <div class="drop" *ngFor="let label of alllabel"
-                    (click)="addnotetolabel(item.id,label.id,label.labelName)">
-                    {{label.labelName}}</div>
-                </mat-menu>
+                    </div>
+                    <div class="drop" *ngFor="let label of alllabel"
+                      (click)="addnotetolabel(item.id,label.id,label.labelName)">
+                      {{label.labelName}}</div>
+                  </mat-menu>
 
 
+                </div>
               </div>
             </div>
-          </div>
 
-        </div>
-      </p-footer>
-    </mat-card>
-</div>
-</div>
+          </div>
+        </p-footer>
+      </mat-card>
+    </div>
+  </div>
 </div>
 
 <mat-divider></mat-divider>
@@ -148,11 +161,11 @@
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
 
-    <div class="block" routerLink='notes' opened>
+    <div class="block" routerLink='notes'>
       <i class="far fa-lightbulb"></i>&nbsp; &nbsp; Notes
     </div>
-    <div class="block">
-      <i class="far fa-bell"></i>&nbsp; &nbsp; Reminder
+    <div class="block" routerLink='reminder'>
+      <i class="far fa-bell" ></i>&nbsp; &nbsp; Reminder
     </div>
     <div class="block" *ngFor="let item of alllabel">
       <div>
@@ -191,12 +204,12 @@
       <!-- Modal body -->
       <div class="modal-body" fxLayout='column' fxLayoutAlign='Space-around'>
 
-        <div class="drop" *ngFor="let label of alllabel"  >
+        <div class="drop" *ngFor="let label of alllabel">
           <button type="button" class="btn" (click)="delete(label)">
-            <i class="fas fa-trash-alt" ></i> </button>
-            <input id="text" type="text" value="{{label.labelName}}" [(formControl)]='labname' class="validate">
-            <button type="button" class="btn" (click)="editlabe(label)">
-            <i class="fas fa-pencil-alt"  ></i> </button></div>
+            <i class="fas fa-trash-alt"></i> </button>
+          <input id="text" type="text" value="{{label.labelName}}" [(formControl)]='labname' class="validate">
+          <button type="button" class="btn" (click)="editlabe(label)">
+            <i class="fas fa-pencil-alt"></i> </button></div>
 
 
 
@@ -213,3 +226,24 @@
 </div>
 
 <!-- </div> -->
+<div class="modal" id="profile">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+          <form method="post">
+        <div>
+         
+          <h6>Add Image</h6>
+          <input #file type="file" accept='image/*' (change)="preview($event)" />
+        </div>
+      </form>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div>
+
+      </div>
+    </div>
+  </div>
+ 

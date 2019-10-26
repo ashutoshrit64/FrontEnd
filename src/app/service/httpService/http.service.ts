@@ -6,13 +6,29 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HttpService {
+  uploadImage(arg0: string, value: any) {
+    throw new Error("Method not implemented.");
+  }
   baseurl = environment.baseUrl;
-  basurlNotes=environment.baseUrlNotes;
+  basurlNotes = environment.baseUrlNotes;
   constructor(private http: HttpClient) { }
+ 
+
+  public imageRequest(url: any, file): any {
+    //  let formData: FormData = new FormData();
+
+    // console.log('data--->',file);
+    // console.log('url-->', url);
+    // formData.append('File',file);
+    // console.log("data====",formData);
+    
+    return this.http.post(this.baseurl + url,file);
+  }
+
 
   public postRequest(url: any, data: any): any {
     console.log('data--->', data);
-    console.log('url-->',url);
+    console.log('url-->', url);
 
     return this.http.post(this.baseurl + url, data);
   }

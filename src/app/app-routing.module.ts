@@ -10,6 +10,7 @@ import { AuthGuardService } from "./service/auth-guard.service";
 import { NotesComponent } from './Components/notes/notes.component';
 import { ArchiveComponent } from './Components/archive/archive.component';
 import { TrashComponent } from './Components/trash/trash.component';
+import { ReminderComponent } from './Components/reminder/reminder.component';
 
 const routes: Routes = [
   {
@@ -53,6 +54,9 @@ const routes: Routes = [
       }, {
         path: 'trash',
         component: TrashComponent
+      }, {
+        path: 'reminder',
+        component: ReminderComponent
       }
     
 ]

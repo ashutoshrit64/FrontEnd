@@ -42,6 +42,9 @@ export class LoginComponent implements OnInit {
       password: this.Password.value
     }
     this.httpservice.postRequest('login', this.loginuser).subscribe(response => {
+       localStorage.setItem('fname',response.firstName);
+       localStorage.setItem('lname',response.lName);
+       localStorage.setItem('emailid',response.email);
       localStorage.setItem('token',response.token);
       console.log("status code-->"+response.statusCode);
       if(response.statusCode==200)
@@ -50,7 +53,7 @@ export class LoginComponent implements OnInit {
         this.snackBar.open(response.statusMessage, 'Undo', {
           duration: 3000
         });
-      this.route.navigate(['dashboard']);
+      this.route.navigate(['dashboard/notes']);
       console.log(response);
       }
       else{

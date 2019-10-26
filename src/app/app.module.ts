@@ -26,6 +26,7 @@ import {MatInputModule} from '@angular/material/input';
 import { MatButtonModule, MatSidenavModule } from "@angular/material";
 import { MatIconModule } from "@angular/material/icon";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {ChipsModule} from 'primeng/chips';
 import { VerifyComponent } from './Components/verify/verify.component';
 import { DemoMaterialModule } from './material-module';
 import { NotesComponent } from './Components/notes/notes.component';
@@ -39,6 +40,7 @@ import { ArchivepipePipe } from './pipe/pipe/archieve/archivepipe.pipe';
 import {ColorPickerModule} from 'primeng/colorpicker';
 import { PinPipe } from './pipe/pipe/pinned/pin.pipe';
 import { LabeldialogComponent } from './Components/labeldialog/labeldialog.component';
+import { ReminderComponent } from './Components/reminder/reminder.component';
 
  
  
@@ -62,7 +64,8 @@ import { LabeldialogComponent } from './Components/labeldialog/labeldialog.compo
     TrashComponent,
     ArchivepipePipe,
     PinPipe,
-    LabeldialogComponent
+    LabeldialogComponent,
+    ReminderComponent
    
     
   ],
@@ -87,6 +90,7 @@ import { LabeldialogComponent } from './Components/labeldialog/labeldialog.compo
     SidebarModule,
     MatInputModule,
     MatIconModule,
+    ChipsModule,
     NgbModule,
     DemoMaterialModule,
     CardModule,
