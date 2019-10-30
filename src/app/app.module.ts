@@ -41,7 +41,6 @@ import {ColorPickerModule} from 'primeng/colorpicker';
 import { PinPipe } from './pipe/pipe/pinned/pin.pipe';
 import { LabeldialogComponent } from './Components/labeldialog/labeldialog.component';
 import { ReminderComponent } from './Components/reminder/reminder.component';
-
  
  
 
