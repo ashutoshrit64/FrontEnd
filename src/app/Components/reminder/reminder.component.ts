@@ -70,4 +70,13 @@ get_reminder(){
   })
 }
 
+delete(data){
+  console.log("delete");
+  console.log("fdsfds",data.id);
+  
+  this.httpservice.putRequest("/deletereminder?noteId="+data.id,null).subscribe(Response=>{
+    console.log(Response);
+    this.ngOnInit();
+  })
+}
 }

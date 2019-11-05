@@ -55,3 +55,20 @@
    cursor: pointer;
    background-color: bisque;
 }
+.smallcircle{
+   width: 35px;
+   height: 35px;
+   border-radius: 35px;
+   border: 1px solid red;
+ }
+ .smallimage{
+   width: 35px;
+   height: 35px;
+ border-radius: 25px;
+ }
+ .icon_cross{
+    float: right;
+ }
+ .icon_cross:hover{
+cursor: pointer;
+ }

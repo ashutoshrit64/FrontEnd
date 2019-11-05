@@ -116,39 +116,44 @@
       <p-footer>
         <div>
           <div fxLayout='column'>
-            <div clas="tag">
+            <mat-chip>
               {{item.label}}
-            </div>
+            </mat-chip>
+
 
 
 
             <div fxLayout='row' fxLayoutGap='30px' fxLayoutAlign='start'>
               <div>
-                  <div class="nav-item">
-                      <div class="dropdown">
-                        <div role="button" data-toggle="dropdown">
-                          <i class="far fa-bell"></i>
-                        </div>
-    
-                        <div class="dropdown-menu">
-                          <div fxLayout='column' fxLayoutAlign="center">
-                            <div class="remind" (click)="settoday(item)">Later Today 8:00PM</div>
-                            <div class="remind"(click)="settomorrow(item)">Tomorrow 8.00AM</div>
-                            <div class="remind" (click)="setweekly(item)">Next Week Monday:8.00 AM</div>
-                            <div fxLayout='row'>  <input type="datetime-local" name="bdaytime">
-                              <input type="submit" value="Set"></div>
-                          </div>
-    
-                          <!-- <div class="block" *ngFor="let color of color_set" (click)="changecolor(color.color,item.id)"
+                <div class="nav-item">
+                  <div class="dropdown">
+                    <div role="button" data-toggle="dropdown">
+                      <i class="far fa-bell"></i>
+                    </div>
+
+                    <div class="dropdown-menu">
+                      <div fxLayout='column' fxLayoutAlign="center">
+                        <div class="remind" (click)="settoday(item)">Later Today 8:00PM</div>
+                        <div class="remind" (click)="settomorrow(item)">Tomorrow 8.00AM</div>
+                        <div class="remind" (click)="setweekly(item)">Next Week Monday:8.00 AM</div>
+                        <div fxLayout='row'> <input type="datetime-local" [(formControl)]="datetime">
+                          <input type="submit" value="Check" (click)="settime()"></div>
+                        <div fxLayout='row'> <input type="text" placeholder="{{newdate |date:'E MMM dd yyyy HH:mm:ss'}}"
+                            value="{{newdate |date:'E MMM dd yyyy HH:mm:ss'}}" [(formControl)]="dateformat">
+                          <input type="submit" value="SetReminder" (click)=set(item)></div>
+                      </div>
+
+                      <!-- <div class="block" *ngFor="let color of color_set" (click)="changecolor(color.color,item.id)"
                                 style="height: 30px;width: 30px;float: left;margin: 3px;" [style.background]="color.color">
                               </div>
          -->
-    
-                        </div>
-                      </div>
+
                     </div>
+                  </div>
+                </div>
               </div>
-              <div>
+              <div (click)="showDialog(item)">
+                <!-- <button type="button" pButton icon="fa fa-user-plus"></button> -->
                 <i class="fa fa-user-plus"></i>
               </div>
               <div>
@@ -258,10 +263,13 @@
                     <div class="dropdown-menu">
                       <div fxLayout='column' fxLayoutAlign="center">
                         <div class="remind" (click)="settoday(item)">Later Today 8:00PM</div>
-                        <div class="remind"(click)="settomorrow(item)">Tomorrow 8.00AM</div>
+                        <div class="remind" (click)="settomorrow(item)">Tomorrow 8.00AM</div>
                         <div class="remind" (click)="setweekly(item)">Next Week Monday:8.00 AM</div>
-                        <div fxLayout='row'>  <input type="datetime-local" name="bdaytime">
-                          <input type="submit" value="Set"></div>
+                        <div fxLayout='row'> <input type="datetime-local" [(formControl)]="datetime">
+                          <input type="submit" value="Check" (click)="settime()"></div>
+                        <div fxLayout='row'> <input type="text" placeholder="{{newdate |date:'E MMM dd yyyy HH:mm:ss'}}"
+                            value="{{newdate |date:'E MMM dd yyyy HH:mm:ss'}}" [(formControl)]="dateformat">
+                          <input type="submit" value="SetReminder" (click)=set(item)></div>
                       </div>
 
                       <!-- <div class="block" *ngFor="let color of color_set" (click)="changecolor(color.color,item.id)"
@@ -274,7 +282,8 @@
                 </div>
 
               </div>
-              <div>
+              <div (click)="showDialog(item)">
+                <!-- <button type="button" pButton icon="fa fa-user-plus"></button> -->
                 <i class="fa fa-user-plus"></i>
               </div>
               <div>
@@ -334,3 +343,37 @@
     </mat-card>
 
   </div>
+  <p-dialog header="Collaborate" [(visible)]="display" [responsive]="true" [style]="{width: '350px', minWidth: '200px'}"
+    [minY]="70" [maximizable]="true" [baseZIndex]="10000">
+    <div fxLayout='column' fxLayoutGap='20px' fxLayoutAlign='center'>
+      <div fxLayout='row'>
+        <div class="smallcircle" fxLayoutAlign='start'>
+          <img src="http://localhost:8080/user/getphoto?token={{token}}" class="smallimage">
+        </div>
+        <div fxLayout='column'>
+          <div>{{username}}
+          </div>
+          <div> {{emailid}}(Owner)</div>
+        </div>
+      </div>
+      <div fxLayout='row' fxLayoutAlign='space-around'>
+      <div *ngFor='let user of allcollabusers'>
+        {{user.collabEmailId}}
+        <div class="icon_cross">
+        
+          <i class="fa fa-times" aria-hidden="true" style="font-size:24px" (click)="deletecollab(user.collabEmailId)"></i> </div>
+     </div> </div>
+      <div>
+        <div class="input-field col m12" style="width: 90%;" fxFlex='100'>
+          <input id="text" type="text" fxFlex='400' placeholder="Person or emailto share with..."
+            [(formControl)]='useremailid' class="validate">
+
+        </div>
+      </div>
+
+    </div>
+    <p-footer>
+      <button type="button" pButton icon="pi pi-close" (click)="display=false" (click)=" addcollab()" label="Save"
+        class="ui-button-secondary"></button>
+    </p-footer>
+  </p-dialog>

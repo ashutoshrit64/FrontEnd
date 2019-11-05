@@ -12,6 +12,10 @@ import { DialogComponent } from '../dialog/dialog.component';
 })
 export class NotesComponent implements OnInit {
   title: any;
+  emailid:any;
+  username:any;
+  noteid:any;
+  token:any;
   labelName: any;
   label = new FormControl("");
   description: any;
@@ -20,10 +24,18 @@ export class NotesComponent implements OnInit {
   toggle: boolean = false;
   Title = new FormControl("", Validators.required);
   Description = new FormControl("", Validators.required);
-  date:any=new Date();
+  useremailid=new FormControl("",Validators.required);
+  date: any = new Date();
+  allcollabusers:any[];
+  reminderdatetime = {
+
+  }
+  dateformat = new FormControl();
+  newdate: any;
   labelDto = {
 
   }
+  datetime = new FormControl("", Validators.required);
   note = {
   };
   public color_set: any;
@@ -41,8 +53,14 @@ export class NotesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+   
+  this.username=localStorage.getItem('fname');
+    this.token=localStorage.getItem('token');
+    this.emailid=localStorage.getItem('emailid');
+    this.notify;
     this.get_all_notes()
-
+    this.settime;
+    this.set;
     this.httpservice.getRequest("/getalllabel?token=" + localStorage.getItem('token')).subscribe(Response => {
       console.log("----------------------------");
 
@@ -229,45 +247,109 @@ export class NotesComponent implements OnInit {
     }
   }
 
-settoday(data){
-  console.log(data.id);
-  const date = new Date().toDateString();
-  let reminderDate = date +' 08:00:00';
-  console.log(reminderDate);
-  this.httpservice.putRequest("/setreminder?token="+localStorage.getItem('token')+"&noteId="+data.id+"&time="+reminderDate,null).subscribe(Response=>{
-    console.log(Response);
+  settoday(data) {
+    console.log(data.id);
+    const date = new Date().toDateString();
+    let reminderDate = date + ' 08:00:00';
+    console.log(reminderDate);
+    this.httpservice.putRequest("/setreminder?token=" + localStorage.getItem('token') + "&noteId=" + data.id + "&time=" + reminderDate, null).subscribe(Response => {
+      console.log(Response);
+
+    })
+  }
+
+  settomorrow(data) {
+    console.log(this.date);
+
+    this.date.setDate(this.date.getDate() + 1);
+    console.log(this.date);
+    let reminderDate = this.date + '08:00:00'
+    this.httpservice.putRequest("/setreminder?token=" + localStorage.getItem('token') + "&noteId=" + data.id + "&time=" + reminderDate, null).subscribe(Response => {
+      console.log(Response);
+
+    })
+
+  }
+  setweekly(data) {
+    console.log(this.date);
+
+    this.date.setDate(this.date.getDate() + 7);
+    console.log(this.date);
+    let reminderDate = this.date + '08:00:00'
+    this.httpservice.putRequest("/setreminder?token=" + localStorage.getItem('token') + "&noteId=" + data.id + "&time=" + reminderDate, null).subscribe(Response => {
+      console.log(Response);
+
+    })
+  }
+  settime() {
+    this.reminderdatetime = {
+      datetime: this.datetime 
+    }
+    this.newdate = this.datetime.value;
+    console.log(this.datetime.value);
+ 
+  }
+  set(data) { 
+    console.log(this.dateformat.value); 
+    this.httpservice.putRequest("/setreminder?token=" + localStorage.getItem('token') + "&noteId=" + data.id + "&time=" + this.dateformat.value, null).subscribe(Response => {
+      console.log(Response);
+    })
+  }
+
+  notify(){
+    this.httpservice.getRequest("/getreminders?token="+localStorage.getItem('token')).subscribe(Response=>{
+      console.log(Response);
+      if(Response.statusCode==200){
+        this.snackBar.open(Response.statusMessage, 'Undo', {
+          duration: 5000
+        });
+        this.ngOnInit();
+      }
+      
+    })
+  }
+  display: boolean = false;
+
+  showDialog(item) 
+  {
+      this.display = true;
+      this.noteid=item.id;
+      console.log(this.noteid);
+      this.getcollabuser();
+      
+  }
+  addcollab(){
+    console.log(this.useremailid.value);
+    console.log(this.noteid);
     
-  })
+    this.httpservice.postRequest("/addcollab?token="+localStorage.getItem('token')+"&noteid="+this.noteid+"&emailid="+this.useremailid.value,null).subscribe(Response=>{
+      console.log(Response);
+      
+        this.snackBar.open(Response.statusMessage, 'Undo', {
+          duration: 5000
+        });
+        this.ngOnInit();
+      
+    })
+
+  }
+
+  getcollabuser()
+  {
+
+    this.httpservice.getRequest("/getcollabusers?noteId="+this.noteid).subscribe(Response=>{
+      console.log(Response);
+       
+      this.allcollabusers=Response;
+      console.log(this.allcollabusers);
+     this.ngOnInit();
+    })
+  }
+  deletecollab(emailid){
+this.httpservice.deleteRequest("/deletecollab?noteid="+this.noteid+"&emailid="+emailid).subscribe(Response=>{
+  console.log(Response);
+  this.ngOnInit();
+})
+  }
+
 }
-
-settomorrow(data)
-{
-  console.log(this.date);
-  
-  this.date.setDate(this.date.getDate() + 1);
-  console.log(this.date);
-  let reminderDate=this.date+'08:00:00'
-  this.httpservice.putRequest("/setreminder?token="+localStorage.getItem('token')+"&noteId="+data.id+"&time="+reminderDate,null).subscribe(Response=>{
-    console.log(Response);
-    
-  })
-  
-}
-setweekly(data){
-  console.log(this.date);
-  
-  this.date.setDate(this.date.getDate() + 7);
-  console.log(this.date);
-  let reminderDate=this.date+'08:00:00'
-  this.httpservice.putRequest("/setreminder?token="+localStorage.getItem('token')+"&noteId="+data.id+"&time="+reminderDate,null).subscribe(Response=>{
-    console.log(Response);
-    
-  })
-}
-
-
-}
-
-
-
-
